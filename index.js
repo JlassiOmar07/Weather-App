@@ -1,4 +1,4 @@
-apikey = "0130c156cb567c42aa96c099e145ce26";
+const apikey = "c6c58888111fed53bbfe72175fb3ebc0";
 
 
 const formEl = document.querySelector("form");
@@ -22,6 +22,11 @@ async function weatherApp(CityValue){
     try {
         
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${CityValue}&appid=${apikey}&units=metric`);
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        
         const Data = await response.json();
         const icon = Data.weather[0].icon ;
         const temperature = Math.round(Data.main.temp);
